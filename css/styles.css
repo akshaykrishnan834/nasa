@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-image: url('space.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+}
+
+img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+header {
+    background: rgba(0, 31, 63, 0.8); /* Semi-transparent background for readability */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    color: #ffeb3b; /* Bright yellow */
+}
+
+main {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+main:hover {
+    transform: translateY(-5px);
+}
+
+h1 {
+    color: #ff6347; /* Tomato */
+}
+
+h2 {
+    color: #483d8b; /* Dark slate blue */
+}
+
+button {
+    background-color: #ff7f50; /* Coral */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #ff4500; /* Orange red */
+    transform: translateY(-2px);
+}
+
+#quiz-questions {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background: #e0ffff; /* Light cyan */
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+label:hover {
+    background: #add8e6; /* Light blue */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #6a5acd;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.star-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Adds space between star cards */
+}
+
+.star {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    flex-basis: calc(30% - 20px); /* Adjusts to fit more stars responsively */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+}
+
+.star:hover {
+    transform: translateY(-5px); /* Adds a hover effect */
+}

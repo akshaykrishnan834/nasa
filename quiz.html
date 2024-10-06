@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Quiz</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Daily Quiz</h1>
+        <nav>
+            <ul>
+                <li><a href="project.html">Home</a></li>
+                <li><a href="solarsytem.html">Planets</a></li>
+                <li><a href="stars.html">Stars</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="quiz-container">
+        <h2>Test your space knowledge and win 50 coins daily!</h2>
+        <button id="start-quiz">Start Quiz</button>
+        <div id="quiz-questions" style="display:none;"></div>
+        <button id="submit-quiz" style="display:none;">Submit</button>
+        <div id="result" style="display:none;"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Space Facts Database</p>
+    </footer>
+    <script>
+        const questions = [
+    {
+        question: "What planet is known as the Red Planet?",
+        answers: ["Earth", "Mars", "Jupiter"],
+        correct: 1
+    },
+    {
+        question: "Which planet is known for its rings?",
+        answers: ["Saturn", "Uranus", "Neptune"],
+        correct: 0
+    },
+    {
+        question: "What is the largest planet in our Solar System?",
+        answers: ["Earth", "Jupiter", "Saturn"],
+        correct: 1
+    },
+    {
+        question: "Which planet is closest to the Sun?",
+        answers: ["Venus", "Earth", "Mercury"],
+        correct: 2
+    },
+    {
+        question: "What is the name of the galaxy that contains our Solar System?",
+        answers: ["Andromeda", "Milky Way", "Triangulum"],
+        correct: 1
+    },
+    {
+        question: "Which planet is known as the Morning Star or Evening Star?",
+        answers: ["Mars", "Venus", "Saturn"],
+        correct: 1
+    },
+    {
+        question: "How many moons does Mars have?",
+        answers: ["One", "Two", "None"],
+        correct: 1
+    },
+    {
+        question: "What is the hottest planet in our Solar System?",
+        answers: ["Mercury", "Venus", "Mars"],
+        correct: 1
+    },
+    {
+        question: "Which celestial body is known as the 'Dog Star'?",
+        answers: ["Sirius", "Canopus", "Betelgeuse"],
+        correct: 0
+    },
+    {
+        question: "What is the name of the first human to travel into space?",
+        answers: ["Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin"],
+        correct: 0
+    },
+    {
+        question: "What phenomenon occurs when the Moon passes between the Earth and the Sun?",
+        answers: ["Lunar Eclipse", "Solar Eclipse", "Planetary Transit"],
+        correct: 1
+    },
+    {
+        question: "What is the term for a rocky object that orbits the Sun and is smaller than a planet?",
+        answers: ["Asteroid", "Comet", "Meteor"],
+        correct: 0
+    }
+];
+
+
+        document.getElementById('start-quiz').addEventListener('click', function() {
+            const quizContainer = document.getElementById('quiz-questions');
+            quizContainer.innerHTML = '';
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.innerHTML = `<p>${q.question}</p>`;
+                q.answers.forEach((answer, i) => {
+                    questionDiv.innerHTML += `<label><input type="radio" name="q${index}" value="${i}"> ${answer}</label><br>`;
+                });
+                quizContainer.appendChild(questionDiv);
+            });
+            quizContainer.style.display = 'block';
+            this.style.display = 'none';
+            document.getElementById('submit-quiz').style.display = 'block';
+        });
+
+        document.getElementById('submit-quiz').addEventListener('click', function() {
+            const results = [];
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected) {
+                    results.push(Number(selected.value) === q.correct);
+                }
+            });
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = `You got ${results.filter(r => r).length} out of ${questions.length} correct!`;
+            resultContainer.style.display = 'block';
+            document.getElementById('quiz-questions').style.display = 'none';
+            this.style.display = 'none';
+            document.getElementById('start-quiz').style.display = 'block'; // Optional: Show start button again
+        });
+    </script>
+</body>
+</html>

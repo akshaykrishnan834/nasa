@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Capture Example</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        video {
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+        canvas {
+            display: none; /* Hide canvas */
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #preview {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" autoplay playsinline></video>
+    <button id="capture">Take Photo</button>
+    <canvas id="canvas"></canvas>
+    <div id="preview"></div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const preview = document.getElementById('preview');
+
+        // Access the camera
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Error accessing the camera: ", err);
+            });
+
+        // Capture the photo
+        document.getElementById('capture').addEventListener('click', () => {
+            canvas.width = video.videoWidth;  // Set canvas width
+            canvas.height = video.videoHeight; // Set canvas height
+            context.drawImage(video, 0, 0);    // Draw the video frame to the canvas
+            const dataUrl = canvas.toDataURL(); // Convert the canvas image to Data URL
+
+            // Show the captured image
+            const img = document.createElement('img');
+            img.src = dataUrl;
+            preview.innerHTML = ''; // Clear previous image
+            preview.appendChild(img);
+        });
+    </script>
+</body>
+</html>
